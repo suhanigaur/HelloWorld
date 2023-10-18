@@ -1,0 +1,51 @@
+/*Swapping nodes in a linked list-(LEETCODE-1721)
+
+Problem Statement-
+You are given the head of a linked list, and an integer k.
+Return the head of the linked list after swapping the values of the kth node from the beginning and the kth node from the end (the list is 1-indexed).
+ 
+Time Complexity-
+O(n)
+
+Space Complexity-
+O(1)
+
+Approach-
+1)Three ListNode pointers temp, temp1, and temp2 are initialized to the head of the linked list which are used to traverse the list.
+2)Two integer variables 'r' and 't' are initialized to 1. 'r' is used to keep track of the position while traversing the list, and 't' is used to count the total number of nodes in the list.
+3)The first while loop advances the temp pointer to the k-th node in the list.
+4)A new pointer fle is set to the position pointed to by temp. This will be one of the nodes to be swapped.
+5)The second while loop advances the temp2 pointer to the last node of the list while counting the total number of nodes t.
+6)The variable a is calculated as t - k + 1. This represents the position of the second node to be swapped (at a distance of k nodes from the end of the list).
+7)The third while loop advances the temp1 pointer to the a-th node in the list. This node will be the second node to be swapped.
+8)A new pointer flag is set to the position pointed to by temp1. This will be the second node to be swapped.
+9)The swap function is used to exchange the values of the fle and flag nodes. This effectively swaps the nodes themselves because the code modifies the values stored in those nodes.
+10)The function returns the updated head of the linked list, which might be needed if the head node was swapped.
+
+Code-*/
+class Solution {
+public:
+    ListNode* swapNodes(ListNode* head, int k) {
+        ListNode*temp=head;
+        ListNode*temp1=head;
+        ListNode*temp2=head;
+        int r=1,a,t=1;
+        while(r!=k){
+            temp=temp->next;
+            r++;
+        } 
+        ListNode*fle=temp;
+        while(temp2->next!=NULL){
+            temp2=temp2->next;
+            t++;
+        }
+        r=1;
+        a=t-k+1;
+        while(r!=a){
+          temp1=temp1->next;
+          r++;
+        }ListNode*flag=temp1;
+        swap(fle->val,flag->val);
+ return head;
+    }
+};
